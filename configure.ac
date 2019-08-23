@@ -18,7 +18,7 @@ AC_PROG_INSTALL
 AC_PROG_LIBTOOL
 AC_HEADER_STDC
 
-CFLAGS="$CFLAGS -Werror -W -Wall -O2 -Wmissing-prototypes -Wmissing-declarations"
+CFLAGS="$CFLAGS -W -Wall -O2 -Wmissing-prototypes -Wmissing-declarations -Wno-unused-parameter"
 
 # Check module depenencies, will automatically include all needed
 # compiler options to DEPS-variables, see src/Makefile.am for details

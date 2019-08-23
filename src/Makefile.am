@@ -34,17 +34,25 @@ osso_lmarbles_SOURCES = \
 	stack.c stack.h \
 	engine_main.c engine_main.h  
 
-osso_lmarbles_LDADD = $(GDEPS_LIBS) $(SDL_LIBS) -lhgw $(SDLMIX_LIBS) $(SDLIMAGE_LIBS) $(OSSO_LIBS)
+osso_lmarbles_LDADD = $(GDEPS_LIBS) $(SDL_LIBS) -lhgw -lm $(SDLMIX_LIBS) $(SDLIMAGE_LIBS) $(OSSO_LIBS)
 
 osso_lmarbles_l_SOURCES = \
         launcher/lmarbles.c
 
-plugin_PROGRAMS = plugin.so
+#plugin_PROGRAMS = plugin.so
+#plugindir = @prefix@/lib/osso-lmarbles
+
+#plugin_so_CFLAGS = $(GTK_CFLAGS) $(GCONF_CFLAGS) $(OSSO_CFLAGS) -fPIC
+
+#plugin_so_LDFLAGS = -shared
+#plugin_so_LDADD = $(GTK_LIBS) $(GCONF_LIBS) $(OSSO_LIBS) 
+
+#plugin_so_SOURCES = plugin/plugin.c
+
+plugin_LTLIBRARIES = plugin.la
 plugindir = @prefix@/lib/osso-lmarbles
 
-plugin_so_CFLAGS = $(GTK_CFLAGS) $(GCONF_CFLAGS) $(OSSO_CFLAGS) -fPIC
-
-plugin_so_LDFLAGS = -shared
-plugin_so_LDADD = $(OSSO_LIBS)
-
-plugin_so_SOURCES = plugin/plugin.c
+plugin_la_LDFLAGS = -export-dynamic -avoid-version -module
+plugin_la_CFLAGS = $(GTK_CFLAGS) $(GCONF_CFLAGS) $(OSSO_CFLAGS) -fPIC
+plugin_so_LIBADD = $(GTK_LIBS) $(GCONF_LIBS) $(OSSO_LIBS) 
+plugin_la_SOURCES = plugin/plugin.c

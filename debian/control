@@ -2,7 +2,7 @@ Source: osso-lmarbles
 Section: non-free/misc
 Priority: optional
 Maintainer: Maske Amish <amish.maske@nokia.com>
-Build-Depends: intltool, libhildon1-dev,libtiff4-dev, debhelper (>= 4.0.0), hildon-games-wrapper-dev, libsdl1.2-dev, libfreetype6-dev (>= 2.1.9), libsdl-mixer1.2-dev, libglib2.0-dev, libstdc++6-dev | libstdc++5-3.3-dev, osso-games-startup-dev, libgtk2.0-dev, libosso-gnomevfs2-dev, libdbus-glib-1-dev, libosso-dev, libgconf2-dev, libsdl-image1.2-dev
+Build-Depends: intltool, libhildon1-dev,libtiff5-dev, debhelper (>= 4.0.0), hildon-games-wrapper-dev, libsdl1.2-dev, libfreetype6-dev (>= 2.1.9), libsdl-mixer1.2-dev, libglib2.0-dev, libstdc++-6-dev | libstdc++-5-3.3-dev, osso-games-startup-dev, libgtk2.0-dev, libdbus-glib-1-dev, libosso-dev, libgconf2-dev, libsdl-image1.2-dev
 Standards-Version: 3.6.0
 
 Package: osso-lmarbles
@@ -13,7 +13,7 @@ Description: Osso LMarbles game
 Package: osso-lmarbles-dbg
 Architecture: any
 Section: devel
-Depends: osso-lmarbles (= ${Source-Version})
+Depends: osso-lmarbles (= ${source:Version})
 Description: Debug package for osso-lmarbles.
  Provides debug symbols for osso-lmarbles.
 

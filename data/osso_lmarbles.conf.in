@@ -1,0 +1,14 @@
+# LMarbles config file
+
+[Startup Entry]
+Name=osso_lmarbles
+Version=@VERSION@
+Title=LMarbles
+TitleId=game_ap_marbles_name
+GettextPackage=osso-games
+PluginPath=@prefix@/lib/osso-lmarbles/plugin.so
+Image=/usr/share/pixmaps/osso-games-startup-lmarbles.png 
+ServiceName=com.nokia.osso_lmarbles
+PathName=/com/nokia/osso_lmarbles
+InterfaceName=com.nokia.osso_lmarbles
+ShowRestartDialog=FALSE

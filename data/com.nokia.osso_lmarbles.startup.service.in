@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=com.nokia.osso_lmarbles.startup
+Exec=@prefix@/bin/lmarbles_startup /usr/share/osso-lmarbles/osso_lmarbles.conf

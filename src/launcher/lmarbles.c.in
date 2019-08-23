@@ -1,0 +1,66 @@
+/**
+    @file lmarbles.c.in
+
+    Osso wrapper lmarbles launcher
+
+    Copyright (c) 2004, 2005 Nokia Corporation.
+	
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+    02111-1307 USA
+*/
+
+#include <stdio.h>
+#include <unistd.h>
+
+//#define VALGRIND /* Define if you want use valgrind */
+
+#ifdef VALGRIND
+char *argh[] = {"/usr/bin/valgrind","--trace-children=yes",
+	        "--logfile=/tmp/marbles","-v","--leak-check=full",
+	        "/usr/games/wrapper/wrapper",
+		"/usr/share/osso-lmarbles/osso_lmarbles.game",
+		NULL};
+#else
+char *argh[] = {"@wrapperdir@/wrapper",
+		"/usr/share/osso-lmarbles/osso_lmarbles.game",
+		NULL};
+#endif
+
+int main(int argc, char *argv[])
+{
+  argc = argc;
+  argv = argv;
+  FILE *pFile;
+  
+  pFile = fopen("/usr/games/.gamewrapper/lmarbles.debug", "a");
+  if(pFile) {
+    fprintf(pFile, "app launched\n");
+    fclose(pFile);
+  }
+
+#ifdef VALGRIND
+  if(execv("/usr/bin/valgrind", argh) == -1) {
+#else
+  if(execv("@wrapperdir@/wrapper", argh) == -1) {
+#endif
+    pFile = fopen("/tmp/.gamewrapper/debug/lmarbles.debug", "a");
+    if(pFile) {
+      fprintf(pFile, "cannot execute wrapper\n");
+      fclose(pFile);
+    }
+  }
+
+  return 0;
+}
